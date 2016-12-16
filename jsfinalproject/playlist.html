@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Playlist Demo</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="js/anvplaylist.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+	  
+	 
+	  
+	  #container {max-width:720px;}
+
+	  #anvmenu {
+		  position: relative;
+		 width: max-width:720px;
+  		 height: 100px;
+   	 	 overflow-x: hidden;
+		 overflow-y: hidden;
+    	white-space:nowrap; 
+
+		   }
+	  
+	  .player-frame {max-width:720px;}
+	  
+	  .anv-item {display: inline-block;}
+	  
+	  .anv-item img{ width:150px;}
+	  
+	  .anv-item-header {visibility:hidden;}
+	  
+	  .left{opacity: .9;}
+	  .right{opacity: .9;}
+	  
+	  </style>
+</head>
+
+
+<body>
+   <div class="content">
+        <div class="player-frame">
+            <div id="p0"></div>
+        </div>
+<div id="container">
+        <div id="anvmenu" class="anvmenu"></div> 
+        <div class="left" style="float:left;position:relative; top:-80px; left:5px;"><input class='left' type="image" src="img/left.png" width="35"></div>
+	<div class="right "style="float:right;position:relative; top:-80px; left:-5px;"><input class='right' type="image" src="img/right.png" width="35"></div>
+</div>
+    </div>
+</div>
+
+
+<script>
+    var anvp = {};
+    anvp.p0 = {};
+	
+	anvp.p0.onReady = function(p){
+            p.getPlaylist(playlistCallback);
+    };
+
+    function playlistCallback(playlist) {
+        var menu = AnvPlaylist("anvmenu", playlist, anvp.p0);
+    }
+	
+    anvp.p0.config = {
+        accessKey: "anvato_cox_app_web_prod_ce45cda237969f93e7130f50ee8bb6280c1484ab",
+		recom: true,
+        plugins: {
+            heartbeat: {
+                marketingCloudId: "146234B8527835E10A490D44@AdobeOrg",
+                customTrackingServer: "coxnet.112.2o7.net",
+                trackingServer: "coxnet.hb.omtrdc.net",
+                jobId: "j2",
+                account: "coxwpxitv,coxglobal",
+                publisherId: "coxnet",
+                version: "1.5"
+            }
+            
+        },
+        profile: "cox",
+       
+    };
+    
+
+</script>
+<script data-anvp='{"width":"100%", "height": "56.25%" ,"mcp":"anv", "playlist": 468, "pInstance":"p0"}' src="http://up.anv.bz/latest/scripts/anvload.js"></script>
+
+<script>
+
+ $(".left").on('click', function () { 
+  var leftPos = $('.anvmenu').scrollLeft();
+  $(".anvmenu").animate({scrollLeft: leftPos - 300}, 200);
+});
+
+$(".right").on('click', function () { 
+  var leftPos = $('.anvmenu').scrollLeft();
+  $(".anvmenu").animate({scrollLeft: leftPos + 300}, 200);
+});
+
+
+anvp.listener = vidCompleteListener;
+function vidCompleteListener(e){
+     if (e.name == "VIDEO_COMPLETED") {
+anvp.p0.playNext();
+}
+}
+
+</script>
+
+
+</body>
+</html>
+
+
