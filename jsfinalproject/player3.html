@@ -83,16 +83,44 @@
       <p><a href="playlist.html">Playlist</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Player Demo 3: 360 on/off</h1>
+      <h1>Player Demo 3: Scroll in view play</h1>
       
-      <div id="playerContainer">
+    
+      
+      
+  
+      
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+       <hr>
+         <div id="baconIpsumOutput"></div>
+            
+<script>            
+		$(document).ready(function(){
+	
+		$.getJSON('http://baconipsum.com/api/?callback=?', 
+			{ 'type':'meat-and-filler', 'start-with-lorem':'1', 'paras':'20' }, 
+			function(baconGoodness)
+		{
+			if (baconGoodness && baconGoodness.length > 0)
+			{
+				$("#baconIpsumOutput").html('');
+				for (var i = 0; i < baconGoodness.length; i++)
+					$("#baconIpsumOutput").append('<p>' + baconGoodness[i] + '</p>');
+				$("#baconIpsumOutput").show();
+			}
+		});
+	});
+
+</script>
+      
+   <div id="playerContainer">
       <div id="p0"></div>
 <script>
     var anvp = {};
     anvp.p0 = {};
     anvp.p0.config = {
         accessKey: "anvato_cox_app_web_prod_ce45cda237969f93e7130f50ee8bb6280c1484ab",
-	    360: false,
+	    autoplay: false,
         plugins: {
             heartbeat: {
                 marketingCloudId: "146234B8527835E10A490D44@AdobeOrg",
@@ -115,63 +143,11 @@
     
 
 </script>
-<script data-anvp='{"width":"100%", "height": "56.25%" ,"mcp":"anv", "video": "3821891", "pInstance":"p0"}' src="//w3.cdn.anvato.net/player/stage/cmg/scripts/anvload.js"></script>
-</div>
+<script data-anvp='{"width":"100%", "height": "56.25%" ,"mcp":"anv", "video": "wsbtv", "pInstance":"p0"}' src="//w3.cdn.anvato.net/player/stage/cmg/scripts/anvload.js"></script>
+</div>     
       
       
-  
-      
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-       <hr>
-         <div id="baconIpsumOutput"></div>
-            
-<script>            
-		$(document).ready(function(){
-	
-		$.getJSON('http://baconipsum.com/api/?callback=?', 
-			{ 'type':'meat-and-filler', 'start-with-lorem':'1', 'paras':'10' }, 
-			function(baconGoodness)
-		{
-			if (baconGoodness && baconGoodness.length > 0)
-			{
-				$("#baconIpsumOutput").html('');
-				for (var i = 0; i < baconGoodness.length; i++)
-					$("#baconIpsumOutput").append('<p>' + baconGoodness[i] + '</p>');
-				$("#baconIpsumOutput").show();
-			}
-		});
-	});
-
-</script>
- 
-<script>
-
-anvp.listener = yourListener;
-function yourListener(e){
-     if (e.name == "METADATA_LOADED") {
-     
-	 var tags = e.args[2].tags;
-	 console.log(tags);
-		
-		if (tags.indexOf("360") > -1){
-
-			anvp.p0.config[360] = true;
-			anvp.p0.mergedConfig[360] = true;
-		 }
-		 
-		 else {
-			
-			 anvp.p0.config[360] = false;
-			 anvp.p0.mergedConfig[360] = false;
-			 }
-	 
-	 }
-}
-
-</script>
-	    
-	    
-<!--<script src="js/anv360.js"></script>-->
+<script src="js/anvscrollvis.js"></script>  
 
 
      
